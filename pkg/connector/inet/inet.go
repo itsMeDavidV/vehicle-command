@@ -118,7 +118,7 @@ func SendFleetAPICommand(ctx context.Context, client *http.Client, userAgent, au
 	}
 
 	log.Debug("Server returned %d: %s: %s", result.StatusCode, http.StatusText(result.StatusCode), body)
-	fmt.Println("\nresult.StatusCode = ", result.StatusCode)
+
 	switch result.StatusCode {
 	case http.StatusOK:
 		return body, nil
@@ -127,10 +127,8 @@ func SendFleetAPICommand(ctx context.Context, client *http.Client, userAgent, au
 			return nil, protocol.ErrProtocolNotSupported
 		}
 	case http.StatusServiceUnavailable:
-		fmt.Println("case http.StatusServiceUnavailable")
 		return nil, ErrVehicleServiceStatusUnavailable
 	case http.StatusRequestTimeout:
-		fmt.Println("case http.StatusRequestTimeout")
 		if bytes.Contains(body, []byte("vehicle is offline")) {
 			return nil, ErrVehicleNotAwake
 		}

@@ -116,14 +116,17 @@ func SendFleetAPICommand(ctx context.Context, client *http.Client, userAgent, au
 	}
 
 	log.Debug("Server returned %d: %s: %s", result.StatusCode, http.StatusText(result.StatusCode), body)
+	fmt.Println("\nresult.StatusCode = ", result.StatusCode)
 	switch result.StatusCode {
 	case http.StatusOK:
 		return body, nil
 	case http.StatusUnprocessableEntity: // HTTP: 422 on commands endpoint means protocol is not supported (fallback to regular commands)
 		return nil, protocol.ErrProtocolNotSupported
 	case http.StatusServiceUnavailable:
+		fmt.Println("case http.StatusServiceUnavailable")
 		return nil, ErrVehicleNotAwake
 	case http.StatusRequestTimeout:
+		fmt.Println("case http.StatusRequestTimeout")
 		if bytes.Contains(body, []byte("vehicle is offline")) {
 			return nil, ErrVehicleNotAwake
 		}

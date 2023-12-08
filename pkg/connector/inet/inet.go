@@ -39,6 +39,7 @@ func readWithContext(ctx context.Context, r io.Reader, p []byte) ([]byte, error)
 }
 
 var ErrVehicleNotAwake = protocol.NewError("vehicle unavailable: vehicle is offline or asleep", false, false)
+
 var ErrVehicleServiceStatusUnavailable = protocol.NewError("vehicle service status unavailable", false, false)
 
 /*

@@ -39,6 +39,7 @@ func readWithContext(ctx context.Context, r io.Reader, p []byte) ([]byte, error)
 }
 
 var ErrVehicleNotAwake = protocol.NewError("vehicle unavailable: vehicle is offline or asleep", false, false)
+var ErrVehicleServiceStatusUnavailable = protocol.NewError("vehicle service status unavailable", false, false)
 
 /*
 The regular expression below extracts domains from HTTP bodies:
@@ -124,7 +125,7 @@ func SendFleetAPICommand(ctx context.Context, client *http.Client, userAgent, au
 		return nil, protocol.ErrProtocolNotSupported
 	case http.StatusServiceUnavailable:
 		fmt.Println("case http.StatusServiceUnavailable")
-		return nil, ErrVehicleNotAwake
+		return nil, ErrVehicleServiceStatusUnavailable
 	case http.StatusRequestTimeout:
 		fmt.Println("case http.StatusRequestTimeout")
 		if bytes.Contains(body, []byte("vehicle is offline")) {

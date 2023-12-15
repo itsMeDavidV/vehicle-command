@@ -186,6 +186,7 @@ func (s *Signer) Encrypt(message *universal.RoutableMessage, expiresIn time.Dura
 // sequence of replies terminates.
 // Sensitive data, such as live camera streams, is encrypted on the application layer.
 func (s *Signer) AuthorizeHMAC(message *universal.RoutableMessage, expiresIn time.Duration) error {
+	fmt.Println("\nAuthorizeHMAC")
 	s.counter++
 	hmacData := signatures.HMAC_Personalized_Signature_Data{
 		Counter:   s.counter,

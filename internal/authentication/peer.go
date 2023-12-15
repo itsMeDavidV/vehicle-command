@@ -33,6 +33,8 @@ func (p *Peer) timestamp() uint32 {
 
 // extractMetadata populates metadata.
 func (p *Peer) extractMetadata(meta *metadata, message *universal.RoutableMessage, info sessionInfo, method signatures.SignatureType) error {
+	fmt.Println("extractMetadata()")
+
 	meta.Add(signatures.Tag_TAG_SIGNATURE_TYPE, []byte{byte(method)})
 
 	// Authenticate domain. Use domain from message because sender might be using BROADCAST.

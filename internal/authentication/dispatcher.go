@@ -1,6 +1,8 @@
 package authentication
 
 import (
+	"fmt"
+
 	"github.com/teslamotors/vehicle-command/pkg/protocol/protobuf/signatures"
 )
 
@@ -14,5 +16,6 @@ func (d *Dispatcher) Connect(verifierId []byte, sessionInfo *signatures.SessionI
 }
 
 func (d *Dispatcher) ConnectAuthenticated(verifierId, challenge, encodedSessionInfo, tag []byte) (*Signer, error) {
+	fmt.Println("\nConnectAuthenticated() will call NewAuthenticatedSigner")
 	return NewAuthenticatedSigner(d, verifierId, challenge, encodedSessionInfo, tag)
 }

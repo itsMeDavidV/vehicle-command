@@ -3,6 +3,7 @@ package dispatcher
 import (
 	"context"
 	"errors"
+	"fmt"
 	"sync"
 	"time"
 
@@ -43,6 +44,9 @@ func NewSession(private authentication.ECDHPrivateKey, vin string) (*session, er
 }
 
 func (s *session) Authorize(ctx context.Context, command *universal.RoutableMessage, method connector.AuthMethod) error {
+
+	fmt.Println("\nAuthorize()")
+
 	var err error
 	for {
 		attempted := false
@@ -110,6 +114,7 @@ func (s *session) ProcessHello(challenge, info, tag []byte) error {
 
 	var err error
 	if s.ctx == nil {
+		fmt.Println("\nProcessHello() will call NewAuthenticatedSigner")
 		s.ctx, err = authentication.NewAuthenticatedSigner(s.private, s.vin, challenge, info, tag)
 		if err != nil {
 			return err

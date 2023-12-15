@@ -308,6 +308,8 @@ func (d *Dispatcher) Stop() {
 
 // Send a message to a vehicle.
 func (d *Dispatcher) Send(ctx context.Context, message *universal.RoutableMessage, auth connector.AuthMethod) (protocol.Receiver, error) {
+	fmt.Println("\nDispatcher.Send()")
+
 	d.doneLock.Lock()
 	listening := d.terminate != nil
 	d.doneLock.Unlock()

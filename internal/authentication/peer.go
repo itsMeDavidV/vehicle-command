@@ -69,6 +69,7 @@ func (p *Peer) extractMetadata(meta *metadata, message *universal.RoutableMessag
 	// the metadata hash if at least one of them is set. (If a MITM
 	// clears these bits, the hashes will not match, as desired).
 	if message.Flags > 0 {
+		fmt.Println("message has flags! ->", message.Flags)
 		meta.AddUint32(signatures.Tag_TAG_FLAGS, message.Flags)
 	}
 

@@ -143,6 +143,8 @@ func (d *Dispatcher) closeHandler(recv *receiver) {
 }
 
 func (d *Dispatcher) checkForSessionUpdate(message *universal.RoutableMessage, handler *receiver) {
+	fmt.Println("\ncheckForSessionUpdate()")
+
 	domain := handler.key.domain
 	sessionInfo := message.GetSessionInfo()
 	if sessionInfo == nil {
@@ -181,6 +183,11 @@ func (d *Dispatcher) checkForSessionUpdate(message *universal.RoutableMessage, h
 }
 
 func (d *Dispatcher) process(message *universal.RoutableMessage) {
+
+	fmt.Println("\nDispatcher.process()")
+
+	fmt.Println("message = ", message)
+
 	var key receiverKey
 
 	if message.GetFromDestination() == nil {

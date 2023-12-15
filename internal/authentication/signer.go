@@ -48,6 +48,9 @@ func NewSigner(private ECDHPrivateKey, verifierName []byte, verifierInfo *signat
 
 // NewAuthenticatedSigner creates a Signer from encoded and cryptographically verified session info.
 func NewAuthenticatedSigner(private ECDHPrivateKey, verifierName, challenge, encodedInfo, tag []byte) (*Signer, error) {
+
+	fmt.Println("\nNewAuthenticatedSigner()")
+
 	signer, err := ImportSessionInfo(private, verifierName, encodedInfo, time.Now())
 	if err != nil {
 		return nil, err

@@ -44,20 +44,19 @@ func (m *metadata) Add(tag signatures.Tag, value []byte) error {
 	}
 	m.last = tag
 	m.Context.Write([]byte{byte(tag)})
-	fmt.Println("m.Context.write []byte{byte(tag)} : ", []byte{byte(tag)}, " m.Context: ", m.Context)
+	fmt.Println("\nm.Context.write []byte{byte(tag)} : ", []byte{byte(tag)}, " m.Context: ", m.Context)
 	m.Context.Write([]byte{byte(len(value))})
-	fmt.Println("m.Context.write []byte{byte(len(value))} : ", []byte{byte(len(value))}, " m.Context: ", m.Context)
+	fmt.Println("\nm.Context.write []byte{byte(len(value))} : ", []byte{byte(len(value))}, " m.Context: ", m.Context)
 	m.Context.Write(value)
-	fmt.Println("m.Context.write value : ", value, " m.Context: ", m.Context)
+	fmt.Println("\nm.Context.write value : ", value, " m.Context: ", m.Context)
 	m.fields[tag] = true
-	fmt.Println("m.fields[tag] = ", m.fields[tag])
 	return nil
 }
 
 func (m *metadata) AddUint32(tag signatures.Tag, value uint32) error {
 	var buffer [4]byte
 	binary.BigEndian.PutUint32(buffer[:], value)
-	fmt.Println("AddUnit32 buffer[:] : ", buffer[:])
+	fmt.Println("\nAddUnit32 buffer[:] : ", buffer[:])
 	return m.Add(tag, buffer[:])
 }
 

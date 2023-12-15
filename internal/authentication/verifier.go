@@ -102,6 +102,7 @@ func (v *Verifier) signedSessionInfo(challenge []byte) (encodedInfo, tag []byte,
 	if err != nil {
 		return
 	}
+	fmt.Println("signedSessionInfo() will call SessionInfoHMAC")
 	tag, err = v.session.SessionInfoHMAC(v.verifierName, challenge, encodedInfo)
 	return
 }

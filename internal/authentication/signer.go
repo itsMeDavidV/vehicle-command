@@ -52,6 +52,7 @@ func NewAuthenticatedSigner(private ECDHPrivateKey, verifierName, challenge, enc
 	if err != nil {
 		return nil, err
 	}
+	fmt.Println("NewAuthenticatedSigner() will call SessionInfoHMAC")
 	validTag, err := signer.session.SessionInfoHMAC(verifierName, challenge, encodedInfo)
 	if err != nil {
 		return nil, err
@@ -116,6 +117,7 @@ func (s *Signer) UpdateSessionInfo(info *signatures.SessionInfo) error {
 // verified session state.
 // See UpdateSessionInfo.
 func (s *Signer) UpdateSignedSessionInfo(challenge, encodedInfo, tag []byte) error {
+	fmt.Println("UpdateSignedSessionInfo() will call SessionInfoHMAC")
 	validTag, err := s.session.SessionInfoHMAC(s.verifierName, challenge, encodedInfo)
 	if err != nil {
 		return err

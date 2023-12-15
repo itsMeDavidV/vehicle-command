@@ -64,13 +64,16 @@ func (b *NativeSession) Decrypt(nonce, ciphertext, associatedData, tag []byte) (
 
 func (n *NativeSession) subkey(label []byte) []byte {
 	kdf := hmac.New(sha256.New, n.key)
+	fmt.Println("subkey hmac.New(sha256.New, n.key) : ", kdf)
 	fmt.Println("\nn.key = ", n.key)
 	kdf.Write(label)
+	fmt.Println("subkey kdf.Write(label) : ", kdf)
 	return kdf.Sum(nil)
 }
 
 func (b *NativeSession) NewHMAC(label string) hash.Hash {
 	fmt.Println("\nNewHMAC will call subkey and hmac.new -- label: ", label)
+	fmt.Println("NewHMAC b.subkey([]byte(label))", b.subkey([]byte(label)))
 	return hmac.New(sha256.New, b.subkey([]byte(label)))
 }
 

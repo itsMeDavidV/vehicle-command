@@ -212,7 +212,14 @@ func (s *Signer) AuthorizeHMAC(message *universal.RoutableMessage, expiresIn tim
 		},
 	}
 
+	fmt.Println("\nhmacData.Tag = ", hmacData.Tag)
+
+	fmt.Println("\nhmacData.Counter = ", hmacData.Counter)
+	fmt.Println("\nhmacData.ExpiresAt = ", hmacData.ExpiresAt)
+	fmt.Println("\nhmacData.Epoch = ", hmacData.Epoch)
 	fmt.Println("\ns.session.LocalPublicBytes() = ", s.session.LocalPublicBytes())
+
+	fmt.Println("\nhmacData = ", hmacData)
 
 	if err != nil {
 		return err

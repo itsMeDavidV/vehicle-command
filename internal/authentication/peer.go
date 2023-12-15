@@ -79,8 +79,13 @@ func (p *Peer) extractMetadata(meta *metadata, message *universal.RoutableMessag
 func (p *Peer) hmacTag(message *universal.RoutableMessage, hmacData *signatures.HMAC_Personalized_Signature_Data) ([]byte, error) {
 	fmt.Println("\n hmacTag(), will call NewHMAC")
 	meta := newMetadataHash(p.session.NewHMAC(labelMessageAuth))
+	fmt.Println("\nmeta.context a = ", meta.Context)
 	if err := p.extractMetadata(meta, message, hmacData, signatures.SignatureType_SIGNATURE_TYPE_HMAC_PERSONALIZED); err != nil {
 		return nil, err
 	}
+	fmt.Println("\nmeta.context b = ", meta.Context)
+
+	fmt.Println("\nmessage before checksum = ", message)
+
 	return meta.Checksum(message.GetProtobufMessageAsBytes()), nil
 }

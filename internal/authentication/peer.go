@@ -1,6 +1,7 @@
 package authentication
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/teslamotors/vehicle-command/pkg/protocol/protobuf/signatures"
@@ -47,6 +48,8 @@ func (p *Peer) extractMetadata(meta *metadata, message *universal.RoutableMessag
 	if err := meta.Add(signatures.Tag_TAG_PERSONALIZATION, p.verifierName); err != nil {
 		return newError(errCodeWrongPerso, "recipient name too long")
 	}
+
+	fmt.Println("\np.verifierName: ", p.verifierName)
 
 	expires := time.Duration(info.GetExpiresAt()) * time.Second
 

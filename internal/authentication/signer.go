@@ -3,6 +3,7 @@ package authentication
 import (
 	"bytes"
 	"crypto/hmac"
+	"fmt"
 	"time"
 
 	"google.golang.org/protobuf/proto"
@@ -204,6 +205,9 @@ func (s *Signer) AuthorizeHMAC(message *universal.RoutableMessage, expiresIn tim
 			},
 		},
 	}
+
+	fmt.Println("\ns.session.LocalPublicBytes() = ", s.session.LocalPublicBytes())
+
 	if err != nil {
 		return err
 	}

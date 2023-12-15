@@ -64,6 +64,7 @@ func (b *NativeSession) Decrypt(nonce, ciphertext, associatedData, tag []byte) (
 
 func (n *NativeSession) subkey(label []byte) []byte {
 	kdf := hmac.New(sha256.New, n.key)
+	fmt.Println("\nn.key = ", n.key)
 	kdf.Write(label)
 	return kdf.Sum(nil)
 }

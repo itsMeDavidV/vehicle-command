@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/ecdh"
 	"errors"
+	"fmt"
 	"time"
 
 	"google.golang.org/protobuf/proto"
@@ -164,6 +165,9 @@ func (v *Vehicle) Disconnect() {
 }
 
 func (v *Vehicle) getReceiver(ctx context.Context, domain universal.Domain, payload []byte, auth connector.AuthMethod) (protocol.Receiver, error) {
+
+	fmt.Println("-69-payload = ", payload)
+
 	message := universal.RoutableMessage{
 		ToDestination: &universal.Destination{
 			SubDestination: &universal.Destination_Domain{

@@ -50,6 +50,8 @@ func (m *metadata) Add(tag signatures.Tag, value []byte) error {
 	m.Context.Write(value)
 	fmt.Println("\nm.Context.write value : ", value, " m.Context: ", m.Context)
 	m.fields[tag] = true
+
+	fmt.Println("m.Context.Sum(nil) = ", m.Context.Sum(nil))
 	return nil
 }
 

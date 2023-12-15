@@ -70,10 +70,12 @@ func (n *NativeSession) subkey(label []byte) []byte {
 }
 
 func (b *NativeSession) NewHMAC(label string) hash.Hash {
+	fmt.Println("\nNewHMAC will call subkey and hmac.new -- label: ", label)
 	return hmac.New(sha256.New, b.subkey([]byte(label)))
 }
 
 func (b *NativeSession) SessionInfoHMAC(id, challenge, encodedInfo []byte) ([]byte, error) {
+	fmt.Println("\nSessionInfoHMAC() will call newHMAC id, challange, encodedInfo", id, challenge, encodedInfo)
 	meta := newMetadataHash(b.NewHMAC(labelSessionInfo))
 	if err := meta.Add(signatures.Tag_TAG_SIGNATURE_TYPE, []byte{byte(signatures.SignatureType_SIGNATURE_TYPE_HMAC)}); err != nil {
 		return nil, err

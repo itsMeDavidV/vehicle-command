@@ -75,6 +75,7 @@ func (p *Peer) extractMetadata(meta *metadata, message *universal.RoutableMessag
 
 // hmacTag computes the HMAC-SHA256 tag for a message.
 func (p *Peer) hmacTag(message *universal.RoutableMessage, hmacData *signatures.HMAC_Personalized_Signature_Data) ([]byte, error) {
+	fmt.Println("\n hmacTag(), will call NewHMAC")
 	meta := newMetadataHash(p.session.NewHMAC(labelMessageAuth))
 	if err := p.extractMetadata(meta, message, hmacData, signatures.SignatureType_SIGNATURE_TYPE_HMAC_PERSONALIZED); err != nil {
 		return nil, err

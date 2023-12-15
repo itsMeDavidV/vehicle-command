@@ -42,7 +42,7 @@ func (m *metadata) Add(tag signatures.Tag, value []byte) error {
 	if len(value) > 255 {
 		return ErrMetadataFieldTooLong
 	}
-	fmt.Println("-- tag: ", tag, ", value: ", value)
+
 	m.last = tag
 	m.Context.Write([]byte{byte(tag)})
 	fmt.Println("\nm.Context.write []byte{byte(tag)} : ", []byte{byte(tag)}, " m.Context: ", m.Context)

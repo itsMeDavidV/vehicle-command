@@ -88,8 +88,8 @@ func (m *metadata) Contains(tags []signatures.Tag) bool {
 
 func (m *metadata) Checksum(message []byte) []byte {
 	m.Context.Write([]byte{byte(signatures.Tag_TAG_END)})
-	fmt.Println("\nChecksum add tag: ", m.Context)
+	fmt.Println("\nChecksum add tag: ", m.Context.Sum(nil))
 	m.Context.Write(message)
-	fmt.Println("\nChecksum add message: ", m.Context)
+	fmt.Println("\nChecksum add message: ", m.Context.Sum(nil))
 	return m.Context.Sum(nil)
 }

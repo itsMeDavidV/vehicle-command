@@ -88,7 +88,8 @@ func (p *Peer) hmacTag(message *universal.RoutableMessage, hmacData *signatures.
 
 	fmt.Println("\nmessage string before checksum = ", message)
 	fmt.Println("\nmessage.Uuid = ", message.Uuid)
-	fmt.Println("\nmessage.Payload = ", message.Payload)
+	fmt.Println("\nmessage.Payload = ", message.GetPayload())
+	fmt.Println("\nRouting address = ", message.FromDestination.GetRoutingAddress())
 
 	return meta.Checksum(message.GetProtobufMessageAsBytes()), nil
 }

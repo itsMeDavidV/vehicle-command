@@ -84,9 +84,9 @@ func (p *Peer) hmacTag(message *universal.RoutableMessage, hmacData *signatures.
 	if err := p.extractMetadata(meta, message, hmacData, signatures.SignatureType_SIGNATURE_TYPE_HMAC_PERSONALIZED); err != nil {
 		return nil, err
 	}
-	fmt.Println("\nmeta.context b = ", meta.Context)
+	//fmt.Println("\nmeta.context b = ", meta.Context)
 
-	fmt.Println("\nmessage before checksum = ", message)
+	fmt.Println("\nmessage string before checksum = ", message)
 	fmt.Println("\nmessage.Uuid = ", message.Uuid)
 	fmt.Println("\nmessage.Payload = ", message.Payload)
 

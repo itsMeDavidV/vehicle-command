@@ -88,7 +88,13 @@ func (m *metadata) Contains(tags []signatures.Tag) bool {
 
 func (m *metadata) Checksum(message []byte) []byte {
 	m.Context.Write([]byte{byte(signatures.Tag_TAG_END)})
+	fmt.Println("Tag end value = ", []byte{byte(signatures.Tag_TAG_END)})
 	fmt.Println("\nChecksum add tag: ", m.Context.Sum(nil))
+
+	fmt.Println("\nmessage data before checksum = ", message)
+	//fmt.Println("\nmessage.Uuid = ", message.Uuid)
+	//fmt.Println("\nmessage.Payload = ", message.Payload)
+
 	m.Context.Write(message)
 	fmt.Println("\nChecksum add message: ", m.Context.Sum(nil))
 	return m.Context.Sum(nil)

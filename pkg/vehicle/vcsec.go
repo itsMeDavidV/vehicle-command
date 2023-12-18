@@ -195,6 +195,7 @@ const (
 )
 
 func (v *Vehicle) executeClosureAction(ctx context.Context, action vcsec.ClosureMoveType_E, closure Closure) error {
+	fmt.Println("executeClosureAction()")
 	done := func(fromVCSEC *vcsec.FromVCSECMessage) (bool, error) {
 		if fromVCSEC.GetCommandStatus() == nil {
 			return true, nil

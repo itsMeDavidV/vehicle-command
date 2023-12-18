@@ -217,6 +217,9 @@ func (v *Vehicle) executeClosureAction(ctx context.Context, action vcsec.Closure
 		},
 	}
 
+	fmt.Println("executeClosureAction.payload = ", payload)
+	fmt.Println("executeClosureAction.&payload = ", &payload)
+
 	encodedPayload, err := proto.Marshal(&payload)
 	if err != nil {
 		return err

@@ -82,6 +82,7 @@ func ImportSessionInfo(private ECDHPrivateKey, verifierName, encodedInfo []byte,
 	if err != nil {
 		return nil, err
 	}
+	fmt.Println("info.ClockTime = ", info.ClockTime)
 	signer.timeZero = generatedAt.Add(-time.Duration(info.ClockTime) * time.Second)
 	return signer, nil
 }

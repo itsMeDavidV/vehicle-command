@@ -87,7 +87,7 @@ func (p *Peer) hmacTag(message *universal.RoutableMessage, hmacData *signatures.
 	fmt.Println("\nmeta.context b = ", meta.Context)
 
 	fmt.Println("\nmessage before checksum = ", message)
-	fmt.Println("\nmessage before checksum = ", message.Uuid)
+	fmt.Println("\nmessage.Uuid = ", message.Uuid)
 	fmt.Println("\nmessage.Payload = ", message.Payload)
 
 	return meta.Checksum(message.GetProtobufMessageAsBytes()), nil

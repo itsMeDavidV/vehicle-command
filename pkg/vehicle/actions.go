@@ -15,7 +15,7 @@ func (v *Vehicle) ActuateTrunk(ctx context.Context) error {
 
 // OpenTrunk opens the trunk, but note that CloseTrunk is not available on all vehicle types.
 func (v *Vehicle) OpenTrunk(ctx context.Context) error {
-	return v.executeClosureAction(ctx, vcsec.ClosureMoveType_E_CLOSURE_MOVE_TYPE_MOVE, ClosureTrunk)
+	return v.executeClosureAction(ctx, vcsec.ClosureMoveType_E_CLOSURE_MOVE_TYPE_OPEN, ClosureTrunk)
 }
 
 // CloseTrunk is not available on all vehicle types.
@@ -25,7 +25,7 @@ func (v *Vehicle) CloseTrunk(ctx context.Context) error {
 
 // OpenTrunk opens the frunk. There is no remote way to close the frunk!
 func (v *Vehicle) OpenFrunk(ctx context.Context) error {
-	return v.executeClosureAction(ctx, vcsec.ClosureMoveType_E_CLOSURE_MOVE_TYPE_OPEN, ClosureFrunk)
+	return v.executeClosureAction(ctx, vcsec.ClosureMoveType_E_CLOSURE_MOVE_TYPE_MOVE, ClosureFrunk)
 }
 func (v *Vehicle) HonkHorn(ctx context.Context) error {
 	return v.executeCarServerAction(ctx,
